@@ -934,6 +934,7 @@ const Select = {
       }
 
       this.setUncontrolledState({ _open: open });
+      this.__emit('dropdownVisibleChange', open);
     },
 
     // Tree checkable is also a multiple case

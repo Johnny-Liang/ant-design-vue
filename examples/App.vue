@@ -1,45 +1,75 @@
 <template>
-  <div>
-    <a-card
-      title="测试"
-      :tab-props="{ size: 'small' }"
-      :tab-list="[
-        { key: 'tab1', tab: 'tab1' },
-        { key: 'tab2', tab: 'tab2' },
-      ]"
-    />
-    <a-card
-      title="测试"
-      :tab-props="{ size: 'large' }"
-      :tab-list="[
-        { key: 'tab1', tab: 'tab1' },
-        { key: 'tab2', tab: 'tab2' },
-      ]"
-    />
-    <a-card
-      title="测试"
-      :tab-props="{}"
-      :tab-list="[
-        { key: 'tab1', tab: 'tab1' },
-        { key: 'tab2', tab: 'tab2' },
-      ]"
-    />
-    <a-card
-      title="测试"
-      :tab-props="{ size: 'default' }"
-      :tab-list="[
-        { key: 'tab1', tab: 'tab1' },
-        { key: 'tab2', tab: 'tab2' },
-      ]"
-    />
-  </div>
+  <a-tree-select
+    v-model="value"
+    style="width: 100%"
+    :tree-data="treeData"
+    tree-checkable
+    :show-checked-strategy="SHOW_PARENT"
+    search-placeholder="Please select"
+    @focus="onfocus"
+    @blur="onBlur"
+    @dropdownVisibleChange="onDropdownVisibleChange"
+  />
 </template>
 <script>
+import { TreeSelect } from 'ant-design-vue';
+const SHOW_PARENT = TreeSelect.SHOW_PARENT;
+
+const treeData = [
+  {
+    title: 'Node1',
+    value: '0-0',
+    key: '0-0',
+    children: [
+      {
+        title: 'Child Node1',
+        value: '0-0-0',
+        key: '0-0-0',
+      },
+    ],
+  },
+  {
+    title: 'Node2',
+    value: '0-1',
+    key: '0-1',
+    children: [
+      {
+        title: 'Child Node3',
+        value: '0-1-0',
+        key: '0-1-0',
+        disabled: true,
+      },
+      {
+        title: 'Child Node4',
+        value: '0-1-1',
+        key: '0-1-1',
+      },
+      {
+        title: 'Child Node5',
+        value: '0-1-2',
+        key: '0-1-2',
+      },
+    ],
+  },
+];
 export default {
   data() {
     return {
-      text: `A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.`,
+      value: ['0-0-0'],
+      treeData,
+      SHOW_PARENT,
     };
+  },
+  methods: {
+    onfocus(e) {
+      console.log('onfocus', e);
+    },
+    onBlur() {
+      console.log('onBlur');
+    },
+    onDropdownVisibleChange(open) {
+      console.log('onDropdownVisibleChange', open);
+    },
   },
 };
 </script>
