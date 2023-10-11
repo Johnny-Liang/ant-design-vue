@@ -10,6 +10,18 @@
 
 ---
 
+## 1.7.10
+
+`2023-10-11`
+
+- 🌟 TreeSelect 支持 placement 属性，自定义弹出位置 [8daad05](https://github.com/Johnny-Liang/ant-design-vue/commit/8daad052f20f999f1a79082cc23b57b3151ab7f4)
+
+## 1.7.9
+
+`2022-04-01`
+
+- 🌟 TreeSelect 支持 dropdownVisibleChange 事件通知 [adf3cce](https://github.com/Johnny-Liang/ant-design-vue/commit/adf3cce7f39a8543e73d81f273356ac0164ef54b)
+
 ## 1.7.8
 
 `2021-08-27`
