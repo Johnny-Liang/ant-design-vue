@@ -1,15 +1,17 @@
 <template>
-  <a-tree-select
-    v-model="value"
-    style="width: 100%"
-    :tree-data="treeData"
-    tree-checkable
-    :show-checked-strategy="SHOW_PARENT"
-    search-placeholder="Please select"
-    @focus="onfocus"
-    @blur="onBlur"
-    @dropdownVisibleChange="onDropdownVisibleChange"
-  />
+  <div style="display: flex; justify-content: center; width: 100%;">
+    <a-tree-select
+      v-model="value"
+      :tree-data="treeData"
+      tree-checkable
+      :show-checked-strategy="SHOW_PARENT"
+      search-placeholder="Please select"
+      placement="bottomRight"
+      @focus="onfocus"
+      @blur="onBlur"
+      @dropdownVisibleChange="onDropdownVisibleChange"
+    />
+  </div>
 </template>
 <script>
 import { TreeSelect } from 'ant-design-vue';

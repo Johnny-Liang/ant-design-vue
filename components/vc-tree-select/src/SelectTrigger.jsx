@@ -14,8 +14,26 @@ const BUILT_IN_PLACEMENTS = {
     },
     ignoreShake: true,
   },
+  bottomRight: {
+    points: ['tr', 'br'],
+    offset: [0, 4],
+    overflow: {
+      adjustX: 0,
+      adjustY: 1,
+    },
+    ignoreShake: true,
+  },
   topLeft: {
     points: ['bl', 'tl'],
+    offset: [0, -4],
+    overflow: {
+      adjustX: 0,
+      adjustY: 1,
+    },
+    ignoreShake: true,
+  },
+  topRight: {
+    points: ['tr', 'br'],
     offset: [0, -4],
     overflow: {
       adjustX: 0,
@@ -38,6 +56,7 @@ const SelectTrigger = {
     transitionName: PropTypes.string,
     animation: PropTypes.string,
     getPopupContainer: PropTypes.func,
+    placement: PropTypes.string,
 
     dropdownMatchSelectWidth: PropTypes.bool,
 
@@ -78,6 +97,7 @@ const SelectTrigger = {
       dropdownStyle,
       dropdownVisibleChange,
       getPopupContainer,
+      placement,
       dropdownPrefixCls,
       popupElement,
       open,
@@ -102,7 +122,7 @@ const SelectTrigger = {
           ],
         }}
         action={disabled ? [] : ['click']}
-        popupPlacement="bottomLeft"
+        popupPlacement={placement}
         builtinPlacements={BUILT_IN_PLACEMENTS}
         popupAlign={dropdownPopupAlign}
         prefixCls={dropdownPrefixCls}

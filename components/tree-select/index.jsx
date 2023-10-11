@@ -26,6 +26,7 @@ const TreeSelect = {
     transitionName: 'slide-up',
     choiceTransitionName: 'zoom',
     showSearch: false,
+    placement: 'bottomLeft',
   }),
   model: {
     prop: 'value',
@@ -109,6 +110,7 @@ const TreeSelect = {
       dropdownStyle,
       dropdownClassName,
       getPopupContainer,
+      placement,
       ...restProps
     } = props;
     const getPrefixCls = this.configProvider.getPrefixCls;
@@ -171,6 +173,7 @@ const TreeSelect = {
           treeCheckable: checkable,
           notFoundContent: notFoundContent || renderEmpty(h, 'Select'),
           __propsSymbol__: Symbol(),
+          placement,
         },
         treeData ? { treeData } : {},
       ),

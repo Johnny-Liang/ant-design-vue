@@ -120,6 +120,7 @@ const Select = {
 
       notFoundContent: PropTypes.any,
       getPopupContainer: PropTypes.func,
+      placement: PropTypes.string,
 
       // onSearch: PropTypes.func,
       // onSelect: PropTypes.func,

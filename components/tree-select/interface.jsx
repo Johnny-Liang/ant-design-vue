@@ -15,6 +15,7 @@ export const TreeSelectProps = () => ({
   dropdownStyle: PropTypes.object,
   filterTreeNode: PropTypes.oneOfType([Function, Boolean]),
   getPopupContainer: PropTypes.func,
+  placement: PropTypes.string,
   labelInValue: PropTypes.bool,
   loadData: PropTypes.func,
   maxTagCount: PropTypes.number,

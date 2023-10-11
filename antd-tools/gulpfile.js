@@ -228,7 +228,7 @@ gulp.task(
 );
 
 function publish(tagString, done) {
-  let args = ['publish', '--with-antd-tools'];
+  let args = ['publish', '--with-antd-tools', '--registry=http://219.135.209.147:4873'];
   if (tagString) {
     args = args.concat(['--tag', tagString]);
   }
