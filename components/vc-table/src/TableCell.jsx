@@ -40,10 +40,20 @@ export default {
         onCellClick(record, e);
       }
     },
-    copyText(text) {
-      if (!text) return;
-      if (typeof text !== 'string' && typeof text !== 'number') return;
-      this.table.copyText(text);
+    copyText(text, attrs) {
+      if (text instanceof Array && text.length === 1 && text[0].text) {
+        text = text[0].text;
+      }
+      const { copyText } = attrs;
+      if (!text && !copyText) return;
+      if (
+        typeof text !== 'string' &&
+        typeof text !== 'number' &&
+        typeof copyText !== 'string' &&
+        typeof copyText !== 'number'
+      )
+        return;
+      this.table.copyText(copyText !== undefined && copyText !== null ? copyText : text);
       clearTimeout(this.tipTimer);
       this.showCopiedTips = true;
       this.tipTimer = setTimeout(() => {
@@ -148,7 +158,11 @@ export default {
       </span>
     ) : null;
     return (
-      <BodyCell class={cellClassName} {...tdProps} onDblclick={() => this.copyText(text)}>
+      <BodyCell
+        class={cellClassName}
+        {...tdProps}
+        onDblclick={() => this.copyText(text, tdProps.attrs)}
+      >
         {indentText}
         {expandIcon}
         {text}
