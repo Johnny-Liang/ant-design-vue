@@ -1,76 +1,103 @@
 <template>
-  <div style="display: flex; justify-content: center; width: 100%;">
-    <a-tree-select
-      v-model="value"
-      :tree-data="treeData"
-      tree-checkable
-      :show-checked-strategy="SHOW_PARENT"
-      search-placeholder="Please select"
-      placement="bottomRight"
-      @focus="onfocus"
-      @blur="onBlur"
-      @dropdownVisibleChange="onDropdownVisibleChange"
-    />
-  </div>
+  <a-table :columns="columns" :data-source="data">
+    <a slot="name" slot-scope="text">{{ text }}</a>
+    <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
+    <span slot="tags" slot-scope="tags">
+      <a-tag
+        v-for="tag in tags"
+        :key="tag"
+        :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+      >
+        {{ tag.toUpperCase() }}
+      </a-tag>
+    </span>
+    <span slot="action" slot-scope="text, record">
+      <a @click="log">Invite 一 {{ record.name }}</a>
+      <a-divider type="vertical" />
+      <a>Delete</a>
+      <a-divider type="vertical" />
+      <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
+    </span>
+    <p slot="expandedRowRender" style="margin: 0">
+      ./node_modules/babel-loader/lib??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./examples/App.vue?vue&type=script&lang=js&
+    </p>
+  </a-table>
 </template>
 <script>
-import { TreeSelect } from 'ant-design-vue';
-const SHOW_PARENT = TreeSelect.SHOW_PARENT;
-
-const treeData = [
+const columns = [
   {
-    title: 'Node1',
-    value: '0-0',
-    key: '0-0',
+    dataIndex: 'name',
+    key: 'name',
+    slots: { title: 'customTitle' },
+    scopedSlots: { customRender: 'name' },
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age0',
+    key: 'age',
     children: [
       {
-        title: 'Child Node1',
-        value: '0-0-0',
-        key: '0-0-0',
+        dataIndex: 'age1',
+        title: 'age1',
+      },
+      {
+        dataIndex: 'age',
+        title: 'age2',
       },
     ],
   },
   {
-    title: 'Node2',
-    value: '0-1',
-    key: '0-1',
-    children: [
-      {
-        title: 'Child Node3',
-        value: '0-1-0',
-        key: '0-1-0',
-        disabled: true,
-      },
-      {
-        title: 'Child Node4',
-        value: '0-1-1',
-        key: '0-1-1',
-      },
-      {
-        title: 'Child Node5',
-        value: '0-1-2',
-        key: '0-1-2',
-      },
-    ],
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: 'Tags',
+    key: 'tags',
+    dataIndex: 'tags',
+    scopedSlots: { customRender: 'tags' },
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    scopedSlots: { customRender: 'action' },
   },
 ];
+
+const data = [
+  {
+    key: '1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    tags: ['nice', 'developer'],
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+    tags: ['loser'],
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+    tags: ['cool', 'teacher'],
+  },
+];
+
 export default {
   data() {
     return {
-      value: ['0-0-0'],
-      treeData,
-      SHOW_PARENT,
+      data,
+      columns,
     };
   },
   methods: {
-    onfocus(e) {
-      console.log('onfocus', e);
-    },
-    onBlur() {
-      console.log('onBlur');
-    },
-    onDropdownVisibleChange(open) {
-      console.log('onDropdownVisibleChange', open);
+    log() {
+      console.log('log');
     },
   },
 };

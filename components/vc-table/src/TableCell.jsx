@@ -24,6 +24,12 @@ export default {
   inject: {
     table: { default: () => ({}) },
   },
+  data() {
+    return {
+      tipTimer: 0,
+      showCopiedTips: false,
+    };
+  },
   methods: {
     handleClick(e) {
       const {
@@ -33,6 +39,16 @@ export default {
       if (onCellClick) {
         onCellClick(record, e);
       }
+    },
+    copyText(text) {
+      if (!text) return;
+      if (typeof text !== 'string' && typeof text !== 'number') return;
+      this.table.copyText(text);
+      clearTimeout(this.tipTimer);
+      this.showCopiedTips = true;
+      this.tipTimer = setTimeout(() => {
+        this.showCopiedTips = false;
+      }, 1500);
     },
   },
 
@@ -126,12 +142,17 @@ export default {
         // }
       }
     }
-
+    const copiedTips = this.showCopiedTips ? (
+      <span style="position: absolute; right: 0; background: #fff; border-radius: 4px; width: 66px; text-align: right;">
+        已复制！
+      </span>
+    ) : null;
     return (
-      <BodyCell class={cellClassName} {...tdProps}>
+      <BodyCell class={cellClassName} {...tdProps} onDblclick={() => this.copyText(text)}>
         {indentText}
         {expandIcon}
         {text}
+        {copiedTips}
       </BodyCell>
     );
   },

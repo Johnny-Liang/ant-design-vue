@@ -209,6 +209,11 @@ export default {
     }
   },
   methods: {
+    copyText(text) {
+      this.$refs.copyInput.value = text;
+      this.$refs.copyInput.select();
+      document.execCommand('copy');
+    },
     getRowKey(record, index) {
       const rowKey = this.rowKey;
       const key = typeof rowKey === 'function' ? rowKey(record, index) : record[rowKey];
@@ -575,6 +580,10 @@ export default {
               // style={props.style}
               // id={props.id}
             >
+              <input
+                ref="copyInput"
+                style="position: absolute; opacity: 0; pointer-events: none;"
+              />
               {this.renderTitle()}
               <div class={`${prefixCls}-content`}>
                 {this.renderMainTable()}
