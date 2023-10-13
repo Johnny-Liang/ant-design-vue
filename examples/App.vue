@@ -1,6 +1,7 @@
 <template>
   <a-table :columns="columns" :data-source="data">
     <template slot="name" slot-scope="text">{{ text }}</template>
+    <!-- <span slot="name" slot-scope="text">{{ text }}</span> -->
     <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
     <span slot="age1">fds</span>
     <span slot="tags" slot-scope="tags">
@@ -42,28 +43,44 @@ const columns = [
         title: 'age1',
         scopedSlots: { customRender: 'age1' },
         customRender: text => {
-          return '321';
+          return text;
         },
       },
       {
         dataIndex: 'age',
         title: 'age2',
+        customRender: text => {
+          return text;
+        },
       },
     ],
   },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-    customRender: text => {
-      return {
-        attrs: {
-          copyText: text,
-        },
-        children: ['fds'],
-      };
-    },
-  },
+  // {
+  //   title: 'Address',
+  //   dataIndex: 'address',
+  //   key: 'address',
+  //   customRender: text => {
+  //     return {
+  //       attrs: {
+  //         rowSpan: 2,
+  //         copyText: text,
+  //       },
+  //       children: <span>{text}</span>,
+  //     };
+  //     return {
+  //       attrs: {
+  //         rowSpan: 2,
+  //       },
+  //       children: <span>{text}</span>,
+  //     };
+  //     return {
+  //       attrs: {
+  //         rowSpan: 2,
+  //       },
+  //       children: text,
+  //     };
+  //   },
+  // },
   {
     title: 'Tags',
     key: 'tags',
@@ -81,7 +98,7 @@ const data = [
   {
     key: '1',
     name: 'John Brown',
-    age: 32,
+    age: 0,
     address: 'New York No. 1 Lake Park',
     tags: ['nice', 'developer'],
   },

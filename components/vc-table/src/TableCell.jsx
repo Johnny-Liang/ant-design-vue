@@ -45,7 +45,8 @@ export default {
         text = text[0].text;
       }
       const { copyText } = attrs;
-      if (!text && !copyText) return;
+      if (!(text === null || text === undefined) && !(copyText === null || copyText === undefined))
+        return;
       if (
         typeof text !== 'string' &&
         typeof text !== 'number' &&
