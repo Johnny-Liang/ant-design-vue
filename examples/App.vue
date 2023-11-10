@@ -1,29 +1,32 @@
 <template>
-  <a-table :columns="columns" :data-source="data">
-    <template slot="name" slot-scope="text">{{ text }}</template>
-    <!-- <span slot="name" slot-scope="text">{{ text }}</span> -->
-    <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-    <span slot="age1">fds</span>
-    <span slot="tags" slot-scope="tags">
-      <a-tag
-        v-for="tag in tags"
-        :key="tag"
-        :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
-      >
-        {{ tag.toUpperCase() }}
-      </a-tag>
-    </span>
-    <span slot="action" slot-scope="text, record">
-      <a @click="log">Invite 一 {{ record.name }}</a>
-      <a-divider type="vertical" />
-      <a>Delete</a>
-      <a-divider type="vertical" />
-      <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
-    </span>
-    <p slot="expandedRowRender" style="margin: 0">
-      ./node_modules/babel-loader/lib??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./examples/App.vue?vue&type=script&lang=js&
-    </p>
-  </a-table>
+  <div>
+    <a-button type="primary">button</a-button>
+    <a-table :columns="columns" :data-source="data">
+      <template slot="name" slot-scope="text">{{ text }}</template>
+      <!-- <span slot="name" slot-scope="text">{{ text }}</span> -->
+      <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
+      <span slot="age1">fds</span>
+      <span slot="tags" slot-scope="tags">
+        <a-tag
+          v-for="tag in tags"
+          :key="tag"
+          :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+        >
+          {{ tag.toUpperCase() }}
+        </a-tag>
+      </span>
+      <span slot="action" slot-scope="text, record">
+        <a @click="log">Invite 一 {{ record.name }}</a>
+        <a-divider type="vertical" />
+        <a>Delete</a>
+        <a-divider type="vertical" />
+        <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
+      </span>
+      <p slot="expandedRowRender" style="margin: 0">
+        ./node_modules/babel-loader/lib??ref--1!./node_modules/vue-loader/lib??vue-loader-options!./examples/App.vue?vue&type=script&lang=js&
+      </p>
+    </a-table>
+  </div>
 </template>
 <script>
 const columns = [
